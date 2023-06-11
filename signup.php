@@ -14,16 +14,19 @@ session_start();
 include_once "dbconnect.php";
 
 $categorie = "Cat1";
-$sql = "INSERT INTO etudiant (MATRICULE, ID_CATEGORIE, NOM, PRENOM, SEXE, EMAIL, MDP) VALUES ('$matricule', '$categorie', '$nom', '$prenom', '$sexe', '$email', '$mdp)";
+$sql = "INSERT INTO etudiant (MATRICULE, ID_CATEGORIE, NOM, PRENOM, SEXE, EMAIL, MDP) VALUES ('$matricule', '$categorie', '$nom', '$prenom', '$sexe', '$email', '$mdp')";
 
 
 if( $matricule!= null && $nom!= null &&  $prenom!= null && $sexe!= null && $email!= null &&  $mdp!= null &&  $mdp1==$mdp )
  {	
     try {
         $idCnx->exec("USE qcm_php");
+		
         $res = $idCnx->exec($sql);
+		
+		print_r($res);
         $message = '<div class="success">Inscription réussie.</div>';
-		header("location: admin_panel/index.php");
+		header("location: index.php");
 		
     } catch(Exception $e) {
         echo "Insertion impossible : " . $e->getMessage();
@@ -79,10 +82,10 @@ if( $matricule!= null && $nom!= null &&  $prenom!= null && $sexe!= null && $emai
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					<li class="active"><a href="index.php">Acceuil</a></li>
-					<li><a href="about.html">A propos</a></li>
+					<li class="active"><a href="#">Acceuil</a></li>
 					
-					<li><a href="contact.html">Contact</a></li>
+					
+				
 					<li><a class="btn" href="signin.php"> Se connecter / S'inscrire </a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
@@ -111,6 +114,7 @@ if( $matricule!= null && $nom!= null &&  $prenom!= null && $sexe!= null && $emai
 				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 					<div class="panel panel-default">
 						<div class="panel-body">
+						<?php  print_r(@$_POST) ?>
 							<h3 class="thin text-center">Enregistrer un nouveau compte</h3>
 							<p class="text-center text-muted">Vous avez déja un compte ? <a href="signin.php">Se connecter</a> </p>
 							<hr>							
@@ -230,8 +234,7 @@ if( $matricule!= null && $nom!= null &&  $prenom!= null && $sexe!= null && $emai
 						<div class="widget-body">
 							<p class="simplenav">
 								<a href="index.php">Accueil</a> | 
-								<a href="about.html">A propos</a> |
-								<a href="contact.html">Contact</a> |
+								
 								<b><a href="signin.php">Se connecter</a></b>
 							</p>
 						</div>

@@ -36,6 +36,7 @@
     
       $idCnx ->exec("USE qcm_php");
       $res = $idCnx->query($sql1);
+      $res11 = $idCnx->query($sql1);
       $res6 =$idCnx->query($sql6);
 
       foreach($res6 as $row)
@@ -44,6 +45,7 @@
       
       //$res1 = $idCnx->query($sql2);
       $reponses_correctes = array() ;
+      $id_qestion = array() ;
 
       
    
@@ -115,33 +117,34 @@
                         <div class="card">
                         <?php  
                         $num = 0 ;
+                        $numi= 0 ; 
                         
                         ?>
                         <form action="" method="post">
                         
                         <?php
                         //print_r($reponses_correctes);
-
-                        
-
+                                     foreach(@$res11 as $rowX){
+                                        array_push($id_qestion,$rowX["ID_QUESTION"]);                                        
+                                    }
+                                    $indexAleatoire = array_rand($id_qestion, 5); 
                             foreach($res as $row)
                                 {      
                                     $num += 1; 
                                     $rep = "rep".$num ; 
                                    // echo "push bonne reponse  : ".$row["BN_REPONSE"]; 
                                     array_push($reponses_correctes, $row["BN_REPONSE"]);
-
-                            ?>
-                            
-                            <div class="card-body">
-                                <div class="card-title" style="color:white;" > <?php echo $num."- " ; echo $row["LIB_QUESTION"];?>  
+                           
+                              if($row["ID_QUESTION"] == $id_qestion[$indexAleatoire[$numi]]  ){
+                                $numi += 1;  ?>
+                                <div class="card-body">
+                                <div class="card-title" style="color:white;" > <?php echo $numi."- " ; echo $row["LIB_QUESTION"];?>  
                                 <?php if($row["TYPE_QUESTION"]== "cocher_rep" ){
                                     $idq = $row["ID_QUESTION"] ;
                                     $sql2 = "SELECT * FROM reponse WHERE ID_QUESTION = '$idq' ";
                                     
                                     $res1 = $idCnx->query($sql2);
                                     foreach($res1 as $row1){
-                                        
                                         ?>
                                         <h5 class="pt-3">
                                     <select class="form-select " id="<?php echo $rep ?>" name="<?php echo $rep ?>">
@@ -152,22 +155,22 @@
                                         <option value="<?php echo $row1["LIB_REPONSE_D"];?>"><?php echo $row1["LIB_REPONSE_D"]?></option>
                                     </select>
                                     </h5>
+                                    <?php
                                     
-                                <?php
-                                    }?>
-                                    
-                                <?php
-                                }  elseif($row["TYPE_QUESTION"]== "saisir_rep" ){ ?>
-                                    <h5 class="card-text pt-3"  style="color:white;"> 
-                                        
+                                   }}elseif($row["TYPE_QUESTION"]== "saisir_rep" ){ ?>
+                                    <h5 class="card-text pt-3"  style="color:white;">     
                                         reponse : 
                                         <input  type="text" id="<?php  echo $rep ?>" name="<?php echo $rep ?>"> 
                                     </h5>
                                     <?php
-                                    }  ?>
+                                }
+                                     ?>
                                 </div>
-                                
+                                <?php if($numi == 5) {
+                                    break;
+                                } } ?> 
                             </div>
+                            
                                 
                                     
 

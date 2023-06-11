@@ -7,7 +7,9 @@
  <nav  class="navbar navbar-expand-lg navbar-light px-5" style="background-color: #3B3131;">
     
     <a class="navbar-brand ml-5" href="./index.php">
-        <img src="./assets/images/logo.png" width="80" height="80" alt="Swiss Collection">
+    <img class="div-rond" width="100" height="100" src=  "<?php   if($_SESSION["photo"] != null){
+                                                echo $_SESSION["photo"];
+                                            }else{ echo "assets/images/sssds.png  ";}?>"> 
     </a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
     

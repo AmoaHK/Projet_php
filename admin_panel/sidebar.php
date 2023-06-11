@@ -3,12 +3,22 @@
         session_start();
     }
 ?>
+<style>
+        .div-rond {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #ccc;
+        }
+    </style>
 
 
 <!-- Sidebar -->
 <div class="sidebar" id="mySidebar">
 <div class="side-header">
-    <img src="./assets/images/logo.png" width="120" height="120" alt="Swiss Collection"> 
+<img class="div-rond" width="100" height="100" src=  "<?php   if($_SESSION["photo"] != null){
+                                                echo $_SESSION["photo"];
+                                            }else{ echo "assets/images/sssds.png  ";}?>"> 
     <h5 style="margin-top:10px;">Hello <?php echo $_SESSION['nom']; ?></h5>
 </div>
 
@@ -18,7 +28,7 @@
     <a href="profil.php"   ><i class="fa fa-user"></i> Profil</a>
     <a href="formation.php"> <i class="fa fa-book"></i> Formations</a>
     <a href="test.php" >  <i class="fa fa-question"></i> Test</a>
-    <a href="#productsizes"   onclick="showProductSizes()" ><i class="fa fa-certificate"></i> Certificats </a>    
+    <a href="certificat.php"><i class="fa fa-certificate"></i> Certificats </a>    
     <a href="#products"   onclick="showProductItems()" ><i class="fa fa-history"></i> Historique</a>
 
   

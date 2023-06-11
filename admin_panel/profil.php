@@ -32,7 +32,60 @@
     $email = $_SESSION['email'];
     $lib_cat = $_SESSION["lib_cat"];
 
+    $mat = $_SESSION['matricule'];
+    
+    
+
+
     $sql1 = "UPDATE etudiant SET MDP = '$mdp'  WHERE EMAIL = '$email'";
+   
+
+
+
+    
+    if( isset($_POST["valider"]) ) {
+      echo '<pre>';
+      var_dump($_FILES);
+      echo '</pre>';
+
+      $file = $_FILES['photo'];
+    
+      // Informations sur le fichier
+      $fileName = $file['name'];
+      $fileTmpPath = $file['tmp_name'];
+      $fileSize = $file['size'];
+      $fileError = $file['error'];
+    
+      // Chemin de destination pour enregistrer le fichier
+      $destinationPath =preg_replace('/[^A-Za-z0-9 ]/', '', 'assets/images/' . $fileName);
+    
+
+      echo $fileError;
+      // Vérifier s'il y a une erreur lors du téléchargement
+      if ($fileError === UPLOAD_ERR_OK) {
+        // Déplacer le fichier vers le dossier de destination
+        if (move_uploaded_file($fileTmpPath, $destinationPath)) {
+          echo "L'image a été téléchargée avec succès.";
+          $sql4 =  "UPDATE etudiant SET PHOTO ='$destinationPath'  WHERE MATRICULE = '$mat'";
+          try {
+            $idCnx->exec("USE qcm_php");
+            $res4 = $idCnx->exec($sql4);
+            $message = '<div class="success">Inscription réussie.</div>';
+        header("location: index.php");
+        
+        } catch(Exception $e) {
+            echo "Insertion impossible : " . $e->getMessage();
+        }
+
+
+        } else {
+          echo "Une erreur s'est produite lors du téléchargement de l'image.";
+        }
+      } else {
+        echo "Une erreur s'est produite lors du téléchargement de l'image : code d'erreur $fileError.";
+      }
+
+    }
     
      
     
@@ -59,7 +112,7 @@
         <div class="row">
         <div >
   <h2>Profil</h2>
-  <form action="" method="post">
+  <form action="" method="post" enctype="multipart/form-data">
   
     <div class="row">
         <div class="col-8" >
@@ -106,14 +159,15 @@
                                         
               </div>
               <div class="col-lg-4 text-right">
-                <input type="submit"  class="btn btn-action" name="valider" value="Modifier" />
+                <input type="submit"  class="btn btn-action" name="valider" value="Modifier" enctype="multipart/form-data" />
               </div>
             </div>
-          
       </div>
       <div class="col-4 ">
-        <img class="mx-3" src="./assets/images/logo.png" width="120" height="120" > 
-        <input type="file" class="btn btn-action" name="photo" id="photo" accept="image/*" disabled>
+      <img class="mx-3 div-rond"  width="120" height="120" src=  "<?php   if($_SESSION["photo"] != null){
+                                                echo $_SESSION["photo"];
+                                            }else{ echo "assets/images/sssds.png  ";}?>">  
+        <input type="file" class="btn btn-action" name="photo" id="photo" accept="image/*">
       </div>
     </div>
     </form>
