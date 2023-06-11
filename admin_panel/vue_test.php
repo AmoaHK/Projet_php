@@ -23,7 +23,7 @@
     include_once "dbconnect.php"; 
 
    
-    $cat =  $_SESSION['cat']  ;
+    $cat =  $_SESSION['cat_etu']  ;
     $sql1 = "SELECT * FROM question WHERE ID_CATEGORIE = '$cat' ";
     $sql6 = "SELECT * FROM categorie WHERE ID_CATEGORIE = '$cat' ";
 

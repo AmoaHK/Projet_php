@@ -30,7 +30,8 @@ if(isset($valider)) {
 						$cpt++;
 						if ($row["MDP_ADMIN"] == $mdp){
 							$message = '<div class="success">Connexion reussie.</div>';
-							//header("location: admin_panel/index11.php");
+							header("location: espace_admin/index.php");
+							$_SESSION["id_admin"] = $row["ID_ADMIN"];
 							break;
 						}
 						else
