@@ -38,6 +38,8 @@
       $disabled[$i]="disabled";
       if($i == $entier-1){
       
+
+        
         $disabled[$i]="";
       }
     }
