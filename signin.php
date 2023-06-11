@@ -22,6 +22,7 @@ if(isset($valider)) {
 				$idCnx ->exec("USE qcm_php");
 				$res2 = $idCnx->query($sql2);
 				$res1 = $idCnx->query($sql1);
+				
 				$cpt = 0;
 				foreach($res2 as $row)
 				{
@@ -43,6 +44,7 @@ if(isset($valider)) {
 							//echo "true";
 							if ($row["MDP"] == $mdp){
 								if($row["STATUT"] == 1){
+									
 									$message = '<div class="success">Connexion reussie.</div>';
 									$_SESSION['nom'] = $row['NOM'];
 									$_SESSION['prenom'] = $row['PRENOM'];
@@ -51,6 +53,17 @@ if(isset($valider)) {
 									$_SESSION['photo'] = $row['PHOTO'];
 									$_SESSION['pass'] = $row['MDP'];
 									$_SESSION['cat_etu'] = $row['ID_CATEGORIE'];
+									$cat_etu = $row['ID_CATEGORIE'];
+									
+									try{include_once "dbconnect.php";
+										$sql3 = "SELECT * FROM categorie WHERE ID_CATEGORIE = '$cat_etu'";
+										$res4 = $idCnx->query($sql3);
+										foreach($res4 as $row){
+											$_SESSION["lib_cat"]=$row["LIB_CATEGORIE"];
+										}							
+									  }catch(Exception $e){
+										echo "Connexion impossible : ", $e-> getMessage();
+										}
 									
 									header("location: admin_panel/index.php");
 									break;}

@@ -28,11 +28,14 @@
     @$mdp = $_POST["pass"];
     @$mdp1 = $_POST["repass"];
     $imdp = $_SESSION['pass'] ;
-    
+    $cat_etu=$_SESSION['cat_etu'];
     $email = $_SESSION['email'];
-
+    $lib_cat = $_SESSION["lib_cat"];
 
     $sql1 = "UPDATE etudiant SET MDP = '$mdp'  WHERE EMAIL = '$email'";
+    
+     
+    
  
     $message ="";
     if(   $mdp!= null &&  $mdp1==$mdp )
@@ -60,26 +63,32 @@
   
     <div class="row">
         <div class="col-8" >
-            <div class="top-margin">
+            <div class="top-margin pt-2">
               <label>Nom  </label>
               <input type="text" name="nom" value="<?php echo $_SESSION['nom'];    ?> " class="form-control" required disabled>
             </div>
-            <div class="top-margin">
+            <div class="top-margin pt-2">
               <label>Prénoms  </label>
               <input type="text"name="prenom" value="<?php echo $_SESSION['prenom']; ?> " class="form-control" required disabled>
             </div>
             
-            <div class="top-margin">
+            <div class="top-margin pt-2">
               <label>Matricule  </label>
               <input type="text" name="matricule"   value="<?php echo $_SESSION['matricule']; ?> "  class="form-control" required  disabled>
             </div>
+
+            <div class="top-margin pt-2">
+              <label>Niveau  </label>
+              <input type="text" name="matricule"   value="<?php echo  $lib_cat; ?> "  class="form-control" required  disabled>
+            </div>
             
-            <div class="top-margin">
+            
+            <div class="top-margin pt-2">
               <label>Email Address  </label>
               <input type="email" value="<?php echo $_SESSION['email']; ?> " name="emai"l class="form-control" required disabled>
             </div>
 
-            <div class="row top-margin">
+            <div class="row top-margin pt-2">
               <div class="col-sm-6">
                 <label>Mot de pass  </label>
                 <input type="password" name="pass" class="form-control" >
