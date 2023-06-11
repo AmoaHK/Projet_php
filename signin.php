@@ -32,6 +32,8 @@ if(isset($valider)) {
 							$message = '<div class="success">Connexion reussie.</div>';
 							header("location: espace_admin/index.php");
 							$_SESSION["id_admin"] = $row["ID_ADMIN"];
+							$_SESSION["nom_admin"] = $row["NOM_ADMIN"]." ".$row["PRENOM_ADMIN"];
+							
 							break;
 						}
 						else

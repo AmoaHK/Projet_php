@@ -35,45 +35,20 @@
         
 
     <div id="main-content" class="container allContent-section py-4">
-        <div class="row">
+        <div class="row justify-content-center">
         
-            <div class="col-sm-3">
+            <div class="col-sm-10">
                 <div class="card">
-                    <i class="fa fa-users  mb-2" style="font-size: 70px;"></i>
-                    <h4 style="color:white;">Total Users</h4>
+                    <i class="fa fa-user  mb-2" style="font-size: 70px; color:white;"></i>
+                    <h4 style="color:white;">Bienvenue<?php echo $_SESSION["nom"]." ".$_SESSION["prenom"] ?>  , sur votre Dashboard </h4>
                     <h5 style="color:white;">
                     <?php
                        
                     ?></h5>
                 </div>
             </div>
-            <div class="col-sm-3">
-                <div class="card">
-                    <i class="fa fa-th-large mb-2" style="font-size: 40px;"></i>
-                    <h4 style="color:white;">Total Categories</h4>
-                    <h5 style="color:white;">
-                    
-                   </h5>
-                </div>
-            </div>
-            <div class="col-sm-3">
-            <div class="card">
-                    <i class="fa fa-th mb-2" style="font-size: 70px;"></i>
-                    <h4 style="color:white;">Total Products</h4>
-                    <h5 style="color:white;">
-                   
-                   </h5>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card">
-                    <i class="fa fa-list mb-2" style="font-size: 70px;"></i>
-                    <h4 style="color:white;">Total orders</h4>
-                    <h5 style="color:white;">
+           
                   
-                   </h5>
-                </div>
-            </div>
         </div>
         
     </div>

@@ -5,8 +5,8 @@
 } ?>
 <div class="sidebar" id="mySidebar">
 <div class="side-header">
-    <img src="./assets/images/logo.png" width="120" height="120" alt="Formation php"> 
-    <h5 style="margin-top:10px;">Salut, Administrateur</h5>
+    <img src="./assets/images/logo_admin.png" width="120" height="120" alt="Formation php"> 
+    <h5 style="margin-top:10px;"><?php echo "Bienvenue"." "."M. ".$_SESSION["nom_admin"]?></h5>
 </div>
 
 <hr style="border:1px solid; background-color:#8a7b6d; border-color:#283747 ;">
@@ -21,6 +21,7 @@
     <a href="#formateurs"   onclick="showFormateurs()" ><i class="fa fa-th"></i> Formateurs</a>
     <?php } ?>    
     <a href="#questions"   onclick="showQuestions()" ><i class="fa fa-th"></i> Questions</a>
+    <a href="#test"   onclick="showTests()" ><i class="fa fa-th"></i> Validation des tests</a>
   
   <!---->
 </div>

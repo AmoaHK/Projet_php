@@ -60,9 +60,9 @@
                                             <i class="fa fa-question  mb-2" style="font-size: 70px; color:white"></i>
                                             <h2 style="color:white;"> Résultat Test <?php echo $_SESSION["lib_cat"] ?></h2>
 
-                                            <?php if($_SESSION["note"] >= 2){ ?>
+                                            <?php if($_SESSION["note"] >= 11){ ?>
                                                 <h6 style="color:white;"> <br>   Félicitations, vous avez réussi le test <?php echo $_SESSION["lib_cat"] ?>.<br> 
-                                                    Votre note est <?php echo $_SESSION["note"] ?> / 4 <br> 
+                                                    Votre note est <?php echo $_SESSION["note"] ?> / 20 <br> 
                                                     Veillez attendre la validation pour télecharger votre certificat de reussite. 
                                                 </h6> 
                                                 <h5 style="color:white;">

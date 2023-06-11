@@ -16,7 +16,7 @@
             include "./sidebar.php";
            
             
-            include_once "config/connexion_db.php";
+            include_once "connexion_db.php";
         ?>
 
     <div id="main-content" class="container allContent-section py-4">

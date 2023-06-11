@@ -11,6 +11,15 @@
   </head>
 </head>
 <style>
+    
+    .mon-bouton {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+    }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
@@ -149,25 +158,27 @@
                     <p><strong>Prénoms:</strong> <?php echo $_SESSION["prenom"] ?></p>
                     <p><strong>Email:</strong> <?php echo $_SESSION["email"] ?></p>
                     <p><strong>Matricule:</strong> <?php echo $_SESSION["matricule"] ?></p>
-                    <p><strong>Durée de formation:</strong> jkj</p>
-                    <p><strong>Note moyenne obtenue:</strong> ckjdzcn djkczdc</p>
+                    
+                    <p><strong>Note moyenne obtenue:</strong> <?php echo $_SESSION["note"] ?></p>
                     <p><strong>Niveau:</strong> <?php echo $_SESSION["lib_cat"] ?></p>
+                    <p><strong>Date de livraison du certificat</strong> <?php echo date('d/m/Y');?></p>
                         </div>
 
                         <div class="col-4">
-                    <img src="assets/images/logo.png" style="font-size: 20px; " alt="Photo de l'apprenant">
+                        <img class="div-rond" width="100" height="100" src=  "<?php   if($_SESSION["photo"] != null){
+                                                echo $_SESSION["photo"];
+                                            }else{ echo "assets/images/sssds.png  ";}?>"> 
 
                         </div>
 
 
                     </div>
-                    <p>Ce certificat atteste que <strong>n zdnc zdl cl</strong> a validé avec succès le niveau "jkzdcnkjzncljsc" d'apprentissage.</p>
+                    <p>Ce certificat atteste que <strong><?php echo $_SESSION["nom"]." ".$_SESSION["prenom"] ?></strong> a validé avec succès le niveau <?php echo $nom_cat ?> d'apprentissage.</p>
 
-                    <p>Ce certificat atteste que <strong>jndcenckjnckjne</strong> n'a pas encore validé le niveau "kczjdncjkc" d'apprentissage.</p>
 
                 </div>
                 <div class="text-center pt-3">
-                    <button onclick="saveCertificate()">jcnjkd</button>
+                    <button class="mon-bouton" onclick="saveCertificate()">Imprimer</button>
                 </div>
                 
             </div>   

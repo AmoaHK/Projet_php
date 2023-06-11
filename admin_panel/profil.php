@@ -44,9 +44,7 @@
 
     
     if( isset($_POST["valider"]) ) {
-      echo '<pre>';
-      var_dump($_FILES);
-      echo '</pre>';
+      
 
       $file = $_FILES['photo'];
     

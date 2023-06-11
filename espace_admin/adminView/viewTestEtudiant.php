@@ -4,33 +4,30 @@
   <table class="table ">
     <thead>
       <tr>
-        <th class="text-center">Matricule</th>
-        <th class="text-center">Nom</th>
-        <th class="text-center">Prenom</th>
-        <th class="text-center">Email</th>
-        <th class="text-center">Statut</th>
-        <th class="text-center" colspan="2">Action</th>
+        <th class="text-center">Num test</th>
+        <th class="text-center">Matricule étudiant</th>
+        <th class="text-center">Date</th>
+        <th class="text-center">Durée</th>
+        <th class="text-center">Note</th>
+        <th class="text-center">Action</th>
       </tr>
     </thead>
     <?php
       include_once "../config/connexion_db.php";
-        $sql = "select MATRICULE, NOM, PRENOM, EMAIL, STATUT from etudiant where STATUT != 2";
+
+        $sql = "select MATRICULE, NOM, PRENOM, EMAIL, STATUT from etudiant where STATUT = 1";
+        $sql1 = "select * from test where STATUT is null or STATUT=0";
         $idCnx ->exec("USE qcm_php");
-        $result=$idCnx-> query($sql);
+        $result=$idCnx-> query($sql1);
       foreach($result as $row){
     ?>
     <tr>
+      <td><?=$row["ID_TEST"]?></td>
       <td><?=$row["MATRICULE"]?></td>
-      <td><?=$row["NOM"]?></td>
-      <td><?=$row["PRENOM"]?></td>      
-      <td><?=$row["EMAIL"]?></td>  
-      <td><?=$row["STATUT"]?></td>
-      <?php if($row["STATUT"] == 0){ ?>    
-      <td><button class="btn btn-primary" style="height:40px" onclick="valider('<?=$row['MATRICULE']?>')">Valider</button></td>
-      <?php  }else{ ?>
-      <td><button class="btn btn-success" style="height:40px" onclick="">Validé(e)</button></td>
-      <?php  } ?>
-      <td><button class="btn btn-danger" style="height:40px"  onclick="variationDelete('<?=$row['MATRICULE']?>')">Supprimer</button></td>
+      <td><?=$row["DATE_TEST"]?></td>      
+      <td><?=$row["DUREE_TEST"]?></td>  
+      <td><?=$row["NOTE"]?></td>
+      <td><button class="btn btn-secondary" style="height:40px"  onclick="validerTest('<?=$row['ID_TEST']?>', '<?=$row['MATRICULE']?>','<?=$row['NOTE']?>')">Valider le test</button></td>
       </tr>
       <?php  } ?>
   </table>

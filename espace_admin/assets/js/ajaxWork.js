@@ -108,6 +108,17 @@ function showAbandons(){
     });
 }
 
+function showTests(){
+    $.ajax({
+        url:"./adminView/viewTestEtudiant.php",
+        method:"post",
+        data:{record:1},
+        success:function(data){
+            $('.allContent-section').html(data);
+        }
+    });
+}
+
 function showCertifies(){
     $.ajax({
         url:"./adminView/viewcertifies.php",
@@ -398,6 +409,17 @@ function valider(id){
         url:"./adminView/validation_etudiants.php",
         method:"post",
         data:{record:id},
+        success:function(data){
+            $('.allContent-section').html(data);
+        }
+    });
+}
+
+function validerTest(id1, id2,id3){
+    $.ajax({
+        url:"./controller/validation_test.php",
+        method:"post",
+        data:{record1:id1, record2:id2, record3:id3},
         success:function(data){
             $('.allContent-section').html(data);
         }

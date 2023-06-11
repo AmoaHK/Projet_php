@@ -35,21 +35,24 @@
     $entier = (int)$dernierCaractere ;
 
     $mat=$_SESSION["matricule"];
-    $sql = "SELECT * FROM test WHERE NOTE >= 2 AND STATUT = 1 AND MATRICULE ='$mat'";
+    $sql = "SELECT * FROM test WHERE NOTE >= 11 AND STATUT = 1 AND MATRICULE ='$mat'";
     $idCnx ->exec("USE qcm_php");
     $res = $idCnx->query($sql);
    // $sql1="SELECT * FROM etudiant WHERE MATRICULE = '$mat'";
     
     
 
-    print_r($res);
+   
     $ok="";
 
     foreach($res as $row){
-        print_r($row);
+        
         if($row["STATUT"] == 1 && $row["STATUT"]==1){
             $ok="ok";
+            $_SESSION["note"] = $row["NOTE"];
         }
+
+        
 
     }
 

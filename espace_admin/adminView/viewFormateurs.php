@@ -13,7 +13,7 @@
     </thead>
     <?php
       include_once "../config/connexion_db.php";
-      $sql = "select ID_ADMIN, NOM_ADMIN, PRENOM_ADMIN, EMAIL_ADMIN from admin where ID_ADMIN != 'super_admin' ";
+      $sql = "select ID_ADMIN, NOM_ADMIN, PRENOM_ADMIN, EMAIL_ADMIN from admin where ID_ADMIN != 1 ";
         $idCnx ->exec("USE qcm_php");
         $result=$idCnx-> query($sql);
       foreach($result as $row){
