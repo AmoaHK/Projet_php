@@ -30,10 +30,12 @@
           echo "Contenu de la formation à remplir obligatoirement";
       else{
          try{
-                       $idCnx ->exec("USE qcm_php");
-                       $sql = "INSERT INTO formation VALUES ($formateur','$categorie','$nom','$descrip_formation', '$statut') ";
-                       $res = $idCnx->exec($sql);
-                       echo "formation ajoutée avec succès";
+                      $idCnx ->exec("USE qcm_php");
+                      
+                      $destinationPath =preg_replace('/[^A-Za-z0-9 ]/', '', 'assets/images/' . $descrip_formation);
+                      $sql = " INSERT INTO formation (ID_ADMIN  , ID_CATEGORIE , NOM_FORMATION, DESC_FORMATION, STATUT) VALUES ('$formateur','$categorie','$nom', '$destinationPath' , '$statut') ";
+                      $res = $idCnx->exec($sql);
+                      echo "formation ajoutée avec succès";
                     }catch(Exception $e){
 
                         echo "Insertion impossible : ", $e-> getMessage();
