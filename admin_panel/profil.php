@@ -56,7 +56,7 @@
     
       // Chemin de destination pour enregistrer le fichier
       $destinationPath =preg_replace('/[^A-Za-z0-9 ]/', '', 'assets/images/' . $fileName);
-    
+      $_SESSION["photo"] =$destinationPath;    
 
       echo $fileError;
       // Vérifier s'il y a une erreur lors du téléchargement
@@ -69,7 +69,7 @@
             $idCnx->exec("USE qcm_php");
             $res4 = $idCnx->exec($sql4);
             $message = '<div class="success">Inscription réussie.</div>';
-        header("location: index.php");
+        header("location: profil.php");
         
         } catch(Exception $e) {
             echo "Insertion impossible : " . $e->getMessage();
